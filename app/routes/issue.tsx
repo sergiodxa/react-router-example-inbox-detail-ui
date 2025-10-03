@@ -20,9 +20,22 @@ export async function loader({ request, params, context }: Route.LoaderArgs) {
 
 export default function Component({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="data-[isinbox=false]:p-4" data-isinbox={loaderData.isInbox}>
-      {!loaderData.isInbox && (
-        <Link to={href("/inbox")} className="text-blue-500 underline">
+    <div
+      className="relative data-[isinbox=false]:p-4"
+      data-isinbox={loaderData.isInbox}
+    >
+      {loaderData.isInbox ? (
+        <Link
+          to={href("/inbox")}
+          className="text-blue-500 underline absolute top-0 right-0"
+        >
+          ⅹ Close
+        </Link>
+      ) : (
+        <Link
+          to={href("/inbox")}
+          className="text-blue-500 underline absolute top-4 right-4"
+        >
           ← Back to inbox
         </Link>
       )}
